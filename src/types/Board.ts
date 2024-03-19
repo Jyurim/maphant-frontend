@@ -11,6 +11,15 @@ type BoardArticleBase = {
   isLike: boolean;
 };
 
+//기본 게시판
+type Board = {
+  boardId: number;
+  userId: number;
+  userNickname: string;
+  typeId: number;
+  type: string;
+} & BoardArticleBase;
+
 //게시판 읽기
 type BoardArticle = {
   categoryId: number;
@@ -36,22 +45,6 @@ type BoardPost = {
 type BoardListItem = {
   boardId: number;
   userNickname: string;
-} & BoardArticleBase;
-
-type HotBoard = {
-  boardId: number;
-  userId: number;
-  userNickname: string;
-  typeId: number;
-  type: string;
-} & BoardArticleBase;
-
-type VoteBoard = {
-  boardId: number;
-  userId: number;
-  userNickname: string;
-  typeId: number;
-  type: string;
 } & BoardArticleBase;
 
 type PollInfo = {
@@ -104,6 +97,7 @@ type hashTagType = {
   name: string;
 };
 export type {
+  Board,
   BoardArticle,
   BoardArticleBase,
   BoardListItem,
@@ -111,10 +105,8 @@ export type {
   BoardType,
   commentType,
   hashTagType,
-  HotBoard,
   PollInfo,
   PollOptions,
   ReportType,
   SortType,
-  VoteBoard,
 };
