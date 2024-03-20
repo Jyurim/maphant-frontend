@@ -18,11 +18,11 @@ import { listBoardType, listVoteBoardTotal } from "../../Api/board";
 import { Spacer, TextThemed } from "../../components/common";
 import { NavigationProps } from "../../Navigator/Routes";
 import UserStorage from "../../storage/UserStorage";
-import { BoardType, VoteBoard } from "../../types/Board";
+import { Board, BoardType } from "../../types/Board";
 import { formatTimeDifference } from "../../utils/Time";
 
 const VotePost: React.FC = () => {
-  const [votePost, setVotePost] = useState<VoteBoard[]>([]);
+  const [votePost, setVotePost] = useState<Board[]>([]);
   const category = useSelector(UserStorage.userCategorySelector);
 
   const navigation = useNavigation();
@@ -53,198 +53,49 @@ const VotePost: React.FC = () => {
       navigation.navigate("BoardDetail", { id: boardId });
     }
   };
-  const styles = StyleSheet.create({
-    votePostBox: {
-      // backgroundColor: "red",
-      flex: 1.5,
-      // height: "33%",
-      borderWidth: 1,
-      borderColor: "#d1d1d1",
-      borderRadius: 10,
-      marginTop: 10,
-      marginHorizontal: 15,
-    },
-    boxTitleBox: {
-      height: 30,
-      justifyContent: "center",
-    },
-    boxTitle: {
-      fontSize: 18,
-      fontWeight: "bold",
-      marginLeft: 20,
-    },
-    line: {
-      borderWidth: 0.7,
-      borderColor: "#d1d1d1",
-      marginLeft: 20,
-      marginRight: 20,
-    },
-    postBox: {
-      height: 50,
-      marginLeft: 20,
-      marginRight: 20,
-      // backgroundColor: "yellow",
-    },
-    nameAndtypeBox: {
-      flexDirection: "row",
-      alignItems: "center",
-      width: "100%",
-      paddingLeft: 10,
-      paddingRight: 10,
-      // backgroundColor: "skyblue",
-    },
-    profileImage: {
-      width: 30,
-      height: 30,
-      borderRadius: 15,
-      marginRight: 10,
-      borderWidth: 1,
-    },
-    textContainer: {
-      width: "100%",
-      flexDirection: "row",
-      justifyContent: "space-between",
-    },
 
-    userNickname: {
-      fontSize: 15,
-      fontWeight: "bold",
-      // backgroundColor: "pink",
-    },
-    boardType: {
-      fontSize: 15,
-      color: "gray",
-      paddingRight: 40,
-    },
-    titleAndbodyBox: {
-      height: 20,
-      //backgroundColor: "skyblue",
-    },
-    postTitle: {
-      fontSize: 15,
-      fontWeight: "bold",
-    },
-    postBody: {
-      fontSize: 15,
-      marginLeft: 5,
-      // backgroundColor: "pink",
-    },
-    tagsBox: {
-      flexDirection: "row",
-      alignItems: "center",
-      paddingLeft: 5,
-    },
-    tags: {
-      fontSize: 15,
-      color: "red",
-      // backgroundColor: "skyblue",
-    },
-    timeAndlikeAndcomment: {
-      flexDirection: "row",
-      // backgroundColor: "pink",
-      alignItems: "center",
-      height: 25,
-      justifyContent: "space-between",
-    },
-    likeTextWrapper: {
-      flexDirection: "row",
-      alignItems: "center",
-      marginRight: 10,
-    },
-    commentTextWrapper: {
-      flexDirection: "row",
-      alignItems: "center",
-    },
-    iconText: {
-      marginLeft: 4,
-    },
-    timeTextWrapper: {
-      width: "30%",
-      flexDirection: "row",
-      justifyContent: "flex-end",
-      alignItems: "center",
-      // backgroundColor: "skyblue",
-    },
-    VotePostBox: {
-      height: 290,
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    noVotePostText: {
-      fontSize: 20,
-      fontWeight: "bold",
-    },
-    topicInner: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      margin: 13,
-      paddingVertical: 10,
-      paddingHorizontal: 5,
-      borderBottomColor: "#aaa",
-      borderBottomWidth: 1,
-    },
-    btn: {
-      backgroundColor: "#CBD7E6",
-      width: 80,
-      height: 30,
-      padding: 15,
-      borderRadius: 4,
-      alignItems: "center",
-      justifyContent: "center",
-      marginHorizontal: 4,
-    },
-    btnFont: {
-      color: "white",
-      paddingBottom: 15,
-    },
-  });
-
-  if (votePost.length === 0) {
-    return (
-      <View style={styles.votePostBox}>
-        <View style={styles.boxTitleBox}>
-          <TextThemed style={styles.boxTitle}>오늘의 핫한 주제는? </TextThemed>
-        </View>
-        <View style={styles.line}></View>
-        <View style={styles.noVotePostBox}>
-          <TextThemed style={styles.noVotePostText}>게시글이 존재하지 않습니다</TextThemed>
-        </View>
-      </View>
-    );
-  }
   return (
     <View style={styles.votePostBox}>
-      <View style={styles.topicInner}>
-        <View style={{ justifyContent: "center" }}>
-          <TextThemed style={{ fontSize: 20 }}> 오늘의 핫한 주제는? </TextThemed>
+      <View style={votePost.length !== 0 ? styles.topicInner : {}}>
+        <View style={styles.boxTitleBox}>
+          <TextThemed style={styles.boxTitle}> 오늘의 핫한 주제는? </TextThemed>
         </View>
+        <View style={styles.line}></View>
+        {votePost.length == 0 ? (
+          <View>
+            <TextThemed style={styles.noVotePostText}>게시글이 존재하지 않습니다</TextThemed>
+          </View>
+        ) : (
+          <>
+            {votePost.map(board => (
+              <Pressable
+                style={styles.postBox}
+                onPress={() => detailContent(board.typeId, board.boardId)}
+                key={board.boardId}
+              >
+                <View style={styles.titleAndbodyBox}>
+                  <TextThemed style={styles.postTitle}>{truncateText(board.title, 20)}</TextThemed>
+                </View>
+                <View style={styles.timeAndlikeAndcomment}>
+                  <View style={{ width: "70%", flexDirection: "row" }}>
+                    <View style={styles.likeTextWrapper}>
+                      <Feather name="thumbs-up" size={13} color="tomato" />
+                      <TextThemed style={styles.iconText}>{board.likeCnt}</TextThemed>
+                    </View>
+                    <View style={styles.commentTextWrapper}>
+                      <FontAwesome name="comment-o" size={13} color="blue" />
+                      <TextThemed style={styles.iconText}>{board.commentCnt}</TextThemed>
+                    </View>
+                  </View>
+                  <View style={styles.timeTextWrapper}>
+                    <TextThemed>{formatTimeDifference(new Date(board.createdAt))}</TextThemed>
+                  </View>
+                </View>
+              </Pressable>
+            ))}
+          </>
+        )}
       </View>
-      {votePost.map(board => (
-        <Pressable
-          style={styles.postBox}
-          onPress={() => detailContent(board.typeId, board.boardId)}
-          key={board.boardId}
-        >
-          <View style={styles.titleAndbodyBox}>
-            <TextThemed style={styles.postTitle}>{truncateText(board.title, 20)}</TextThemed>
-          </View>
-          <View style={styles.timeAndlikeAndcomment}>
-            <View style={{ width: "70%", flexDirection: "row" }}>
-              <View style={styles.likeTextWrapper}>
-                <Feather name="thumbs-up" size={13} color="tomato" />
-                <TextThemed style={styles.iconText}>{board.likeCnt}</TextThemed>
-              </View>
-              <View style={styles.commentTextWrapper}>
-                <FontAwesome name="comment-o" size={13} color="blue" />
-                <TextThemed style={styles.iconText}>{board.commentCnt}</TextThemed>
-              </View>
-            </View>
-            <View style={styles.timeTextWrapper}>
-              <TextThemed>{formatTimeDifference(new Date(board.createdAt))}</TextThemed>
-            </View>
-          </View>
-        </Pressable>
-      ))}
     </View>
   );
 };
@@ -262,7 +113,7 @@ const BoardList = () => {
   };
 
   const boardTypeDataRows = splitIntoRows(boardTypeData, 2);
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     listBoardType()
@@ -302,7 +153,6 @@ const BoardList = () => {
     <TouchableWithoutFeedback onPress={handle}>
       <View style={styles.container}>
         <VotePost />
-        {/* <SearchBar /> */}
         <Spacer size={20} />
         <View style={styles.board}>
           {boardTypeDataRows.map((rowData, rowIndex) => (
@@ -362,7 +212,6 @@ const styles = StyleSheet.create({
   board: {
     flex: 1.1,
     flexDirection: "row",
-    // alignItems: "stretch",
     alignItems: "flex-start",
     justifyContent: "space-between",
     borderTopColor: "#aaa",
@@ -390,6 +239,139 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     padding: 15,
     borderRadius: 15,
+  },
+  votePostBox: {
+    flex: 1.5,
+    borderWidth: 1,
+    borderColor: "#d1d1d1",
+    borderRadius: 10,
+    marginTop: 10,
+    marginHorizontal: 15,
+  },
+  boxTitleBox: {
+    height: 30,
+    justifyContent: "center",
+  },
+  boxTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginLeft: 20,
+  },
+  line: {
+    borderWidth: 0.7,
+    borderColor: "#d1d1d1",
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  postBox: {
+    height: 50,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  nameAndtypeBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  profileImage: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    marginRight: 10,
+    borderWidth: 1,
+  },
+  textContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
+  userNickname: {
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  boardType: {
+    fontSize: 15,
+    color: "gray",
+    paddingRight: 40,
+  },
+  titleAndbodyBox: {
+    height: 20,
+  },
+  postTitle: {
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  postBody: {
+    fontSize: 15,
+    marginLeft: 5,
+  },
+  tagsBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: 5,
+  },
+  tags: {
+    fontSize: 15,
+    color: "red",
+  },
+  timeAndlikeAndcomment: {
+    flexDirection: "row",
+    alignItems: "center",
+    height: 25,
+    justifyContent: "space-between",
+  },
+  likeTextWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 10,
+  },
+  commentTextWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  iconText: {
+    marginLeft: 4,
+  },
+  timeTextWrapper: {
+    width: "30%",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  VotePostBox: {
+    height: 290,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  noVotePostText: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  topicInner: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 13,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    borderBottomColor: "#aaa",
+    borderBottomWidth: 1,
+  },
+  btn: {
+    backgroundColor: "#CBD7E6",
+    width: 80,
+    height: 30,
+    padding: 15,
+    borderRadius: 4,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 4,
+  },
+  btnFont: {
+    color: "white",
+    paddingBottom: 15,
   },
 });
 export default BoardList;
