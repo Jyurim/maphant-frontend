@@ -3,14 +3,14 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 import { TextThemed } from "../../components/common";
-import { BoardArticle, BoardType, HotBoard } from "../../types/Board";
+import { Board, BoardArticle, BoardType } from "../../types/Board";
 import { formatTimeDifference } from "../../utils/Time";
 
 export default function ({
   post,
   boardType,
 }: {
-  post: BoardArticle | HotBoard;
+  post: BoardArticle | Board;
   boardType: BoardType;
 }): JSX.Element {
   switch (boardType) {
@@ -19,7 +19,7 @@ export default function ({
   }
 }
 
-function PostSummary(post: BoardArticle | HotBoard): JSX.Element {
+function PostSummary(post: BoardArticle | Board): JSX.Element {
   return (
     <>
       <View style={styles.head}>

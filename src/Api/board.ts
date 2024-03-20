@@ -1,4 +1,4 @@
-import { BoardArticle, BoardPost, commentType, HotBoard, VoteBoard } from "../types/Board";
+import { Board, BoardArticle, BoardPost, commentType } from "../types/Board";
 import { dataResponse, DeleteAPI, GetAPI, PostAPI, PutAPI } from "./fetchAPI";
 
 const listArticle = (
@@ -48,27 +48,27 @@ function boardPost(
 const listVoteBoardTotal = (
   page: number,
   recordSize: number,
-): Promise<dataResponse<{ list: VoteBoard[] }>> =>
+): Promise<dataResponse<{ list: Board[] }>> =>
   GetAPI(`/board/poll?page=${page}&recordSize=${recordSize}`);
 
 const listVoteBoard = (
   boardType_id: number,
   page: number,
   recordSize: number,
-): Promise<dataResponse<{ list: VoteBoard[] }>> =>
+): Promise<dataResponse<{ list: Board[] }>> =>
   GetAPI(`/board/poll?boardTypeId=${boardType_id}&page=${page}&recordSize=${recordSize}`);
 
 const listHotBoardTotal = (
   page: number,
   recordSize: number,
-): Promise<dataResponse<{ list: HotBoard[] }>> =>
+): Promise<dataResponse<{ list: Board[] }>> =>
   GetAPI(`/board/hot?page=${page}&recordSize=${recordSize}`);
 
 const listHotBoard = (
   boardType_id: number,
   page: number,
   recordSize: number,
-): Promise<dataResponse<{ list: HotBoard[] }>> =>
+): Promise<dataResponse<{ list: Board[] }>> =>
   GetAPI(`/board/hot?boardTypeId=${boardType_id}&page=${page}&recordSize=${recordSize}`);
 
 function boardEdit(

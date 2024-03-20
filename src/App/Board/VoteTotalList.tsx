@@ -4,7 +4,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { listVoteBoardTotal } from "../../Api/board";
 import { NavigationProps } from "../../Navigator/Routes";
-import { BoardType, VoteBoard } from "../../types/Board";
+import { Board, BoardType } from "../../types/Board";
 import PostSummary from "./PostSummary";
 
 const VoteTotalList = () => {
@@ -12,10 +12,10 @@ const VoteTotalList = () => {
   const boardType = params?.boardType;
   const navigation = useNavigation<NavigationProps>();
 
-  const [voteBoardData, setVoteBoardData] = useState<VoteBoard[]>([]);
+  const [voteBoardData, setVoteBoardData] = useState<Board[]>([]);
 
   useEffect(() => {
-    listVoteBoardTotal(1, 50).then(data => setVoteBoardData(data.data.list as VoteBoard[]));
+    listVoteBoardTotal(1, 50).then(data => setVoteBoardData(data.data.list as Board[]));
   }, []);
   const voteDetailContent = (typeId: number, boardId: number) => {
     if (typeId == 2) {

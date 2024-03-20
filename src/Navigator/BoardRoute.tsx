@@ -1,14 +1,14 @@
 import BoardDetail from "../App/Board/BoardDetail";
 import BoardList, { BoardType } from "../App/Board/BoardList";
+import DetailList from "../App/Board/DetailList";
 import Edit from "../App/Board/EditPost";
-import HotDetailList from "../App/Board/HotList";
-import DetailList from "../App/Board/List";
+import HotList from "../App/Board/HotList";
 import Post from "../App/Board/Post";
 import QA_answer from "../App/Board/QA_answer";
 import QAdetail from "../App/Board/QAdetail";
 import QnABoard from "../App/Board/QnAList";
 import TotalList from "../App/Board/TotalList";
-import VoteDetailList from "../App/Board/VoteList";
+import VoteList from "../App/Board/VoteList";
 import VoteTotalList from "../App/Board/VoteTotalList";
 import Profile from "../App/Mypage/Profile";
 import WriteBoard from "../App/Mypage/WriteBoard";
@@ -55,7 +55,7 @@ const Routes: RouteType[] = [
   },
   {
     name: "HotDetailList",
-    component: HotDetailList,
+    component: HotList,
   },
   {
     name: "VoteBoard",
@@ -63,7 +63,7 @@ const Routes: RouteType[] = [
   },
   {
     name: "VoteDetailList",
-    component: VoteDetailList,
+    component: VoteList,
   },
   {
     name: "Profile",

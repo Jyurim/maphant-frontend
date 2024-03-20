@@ -5,7 +5,7 @@ import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { listHotBoardTotal } from "../../Api/board";
 import { Container, TextThemed } from "../../components/common";
 import { NavigationProps } from "../../Navigator/Routes";
-import { BoardType, HotBoard } from "../../types/Board";
+import { Board, BoardType } from "../../types/Board";
 import PostSummary from "./PostSummary";
 
 const TotalList = () => {
@@ -13,10 +13,10 @@ const TotalList = () => {
   const boardType = params?.boardType;
   const navigation = useNavigation<NavigationProps>();
 
-  const [boardData, setboardData] = useState<HotBoard[]>([]);
+  const [boardData, setBoardData] = useState<Board[]>([]);
 
   useEffect(() => {
-    listHotBoardTotal(1, 50).then(data => setboardData(data.data.list as HotBoard[]));
+    listHotBoardTotal(1, 50).then(data => setBoardData(data.data.list as Board[]));
   }, []);
   const detailContent = (typeId: number, boardId: number) => {
     if (typeId == 2) {

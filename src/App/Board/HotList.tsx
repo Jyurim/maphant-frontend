@@ -12,21 +12,20 @@ import {
   View,
 } from "react-native";
 
-import { listHotBoard, searchArticle } from "../../Api/board";
+import { listHotBoard } from "../../Api/board";
 import { Container } from "../../components/common";
-import SearchBar from "../../components/Input/searchbar";
-import { BoardType, HotBoard } from "../../types/Board";
+import { Board, BoardType } from "../../types/Board";
 import { NavigationProps } from "../../types/Navigation";
 import PostSummary from "./PostSummary";
 
 const HotDetailList: React.FC = () => {
   const params = useRoute().params as { boardType: BoardType };
   const boardType = params?.boardType;
-  const [boardData, setboardData] = useState<HotBoard[]>([]);
+  const [boardData, setboardData] = useState<Board[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation<NavigationProp<NavigationProps>>();
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<HotBoard[]>([]);
+  const [searchResults, setSearchResults] = useState<Board[]>([]);
 
   const fetchData = async () => {
     try {
@@ -36,7 +35,7 @@ const HotDetailList: React.FC = () => {
       }
       const data = await listHotBoard(boardType.id, 1, 50);
       if (data.data) {
-        setboardData(data.data.list as HotBoard[]);
+        setboardData(data.data.list as Board[]);
       }
     } catch (err) {
       Alert.alert(err);
@@ -58,7 +57,7 @@ const HotDetailList: React.FC = () => {
     navigation.navigate("Post", { boardType: boardType });
   };
 
-  const detailContent = (board: HotBoard) => {
+  const detailContent = (board: Board) => {
     navigation.navigate("QnAdetail", { id: board.boardId });
   };
 

@@ -2,14 +2,14 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { NavigationProps } from "../../Navigator/Routes";
-import { BoardArticle, BoardType, HotBoard } from "../../types/Board";
+import { Board, BoardArticle, BoardType } from "../../types/Board";
 import { dateFormat } from "../../utils/Time";
 
 export default function ({
   post,
   boardType,
 }: {
-  post: BoardArticle | HotBoard;
+  post: BoardArticle | Board;
   boardType: BoardType;
 }): JSX.Element {
   switch (boardType) {
@@ -17,7 +17,7 @@ export default function ({
       return ScrollList(post);
   }
 }
-function ScrollList(post: BoardArticle | HotBoard): JSX.Element {
+function ScrollList(post: BoardArticle | Board): JSX.Element {
   const params = useRoute().params as { boardType: BoardType };
   const boardType = params?.boardType;
   const navigation = useNavigation<NavigationProps>();
