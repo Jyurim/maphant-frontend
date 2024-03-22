@@ -127,7 +127,7 @@ const BoardList = () => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("QnABoard", { boardType: boardType });
+          navigation.navigate("BoardScrollView", { boardType: boardType });
         }}
       >
         <View style={styles.boardList} key={boardType.id}>
@@ -181,7 +181,7 @@ const BoardList = () => {
           <View style={{ justifyContent: "center" }}>
             <TouchableOpacity onPress={changeVotePage} style={{ marginHorizontal: 20 }}>
               <Text style={{ fontSize: 18 }}>
-                투표 게시글 <MaterialCommunityIcons name="fire" size={24} color="black" />
+                투표 게시글 <MaterialCommunityIcons name="vote" size={24} color="black" />
               </Text>
             </TouchableOpacity>
           </View>

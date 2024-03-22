@@ -13,7 +13,7 @@ type NavigationProps = {
   DetailList: {
     boardType: BoardType;
   };
-  // QnABoard: {};
+  // BoardScrollView: {};
 };
 
 export type { NavigationProps, RouteType };

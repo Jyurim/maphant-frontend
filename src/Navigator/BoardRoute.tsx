@@ -1,12 +1,12 @@
 import BoardDetail from "../App/Board/BoardDetail";
 import BoardList, { BoardType } from "../App/Board/BoardList";
+import BoardScrollView from "../App/Board/BoardScrollView";
 import DetailList from "../App/Board/DetailList";
 import Edit from "../App/Board/EditPost";
 import HotList from "../App/Board/HotList";
 import Post from "../App/Board/Post";
 import QA_answer from "../App/Board/QA_answer";
 import QAdetail from "../App/Board/QAdetail";
-import QnABoard from "../App/Board/QnAList";
 import TotalList from "../App/Board/TotalList";
 import VoteList from "../App/Board/VoteList";
 import VoteTotalList from "../App/Board/VoteTotalList";
@@ -22,8 +22,8 @@ const Routes: RouteType[] = [
     component: BoardList,
   },
   {
-    name: "QnABoard",
-    component: QnABoard,
+    name: "BoardScrollView",
+    component: BoardScrollView,
   },
   {
     name: "DetailList",
@@ -81,7 +81,7 @@ const Routes: RouteType[] = [
 
 export type NavigationProp = {
   BoardList: undefined;
-  QnABoard: { boardType: BoardType };
+  BoardScrollView: { boardType: BoardType };
   DetailList: { boardType: BoardType };
   BoardDetail: { id: number; preRender?: BoardArticle };
   QnAdetail: { id: number; preRender?: BoardArticle };
