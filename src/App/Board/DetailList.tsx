@@ -100,7 +100,7 @@ const DetailList: React.FC = () => {
     if (boardType.id == 2) {
       navigation.navigate("QnAdetail", { id: board.boardId });
     } else {
-      navigation.navigate("BoardDetail", { id: board.boardId });
+      navigation.navigate("PostDetail", { id: board.boardId });
     }
   };
 

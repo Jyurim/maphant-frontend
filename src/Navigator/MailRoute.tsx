@@ -1,4 +1,4 @@
-import BoardDetail from "../App/Board/BoardDetail";
+import PostDetail from "../App/Board/PostDetail";
 import Chatroom from "../App/Mail/Chatroom";
 import Mail from "../App/Mail/Mail";
 import SearchUser from "../App/Mail/SearchUser";
@@ -30,8 +30,8 @@ const Routes: RouteType[] = [
     component: WriteBoard,
   },
   {
-    name: "BoardDetail",
-    component: BoardDetail,
+    name: "PostDetail",
+    component: PostDetail,
   },
   {
     name: "WriteContent",

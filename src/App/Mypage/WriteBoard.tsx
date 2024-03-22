@@ -41,7 +41,7 @@ const WriteBoard: React.FC = () => {
               style={{ flex: 1, padding: 5 }}
               key={item.id}
               onPress={() => {
-                navigation.navigate("BoardDetail", { id: item.id });
+                navigation.navigate("PostDetail", { id: item.id });
               }}
             >
               <Container

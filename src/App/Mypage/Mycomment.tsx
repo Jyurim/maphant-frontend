@@ -69,7 +69,7 @@ function Mycomment(): JSX.Element {
   }
 
   const detailContent = (comments: BoardArticle) => {
-    navigation.navigate("BoardDetail", { id: comments.board_id });
+    navigation.navigate("PostDetail", { id: comments.board_id });
   };
 
   return (

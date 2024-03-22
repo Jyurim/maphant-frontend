@@ -70,7 +70,7 @@ function Mylike(): JSX.Element {
   }
 
   const detailContent = (likes: BoardArticle) => {
-    navigation.navigate("BoardDetail", { id: likes.id });
+    navigation.navigate("PostDetail", { id: likes.id });
   };
 
   return (

@@ -1,10 +1,10 @@
-import BoardDetail from "../App/Board/BoardDetail";
 import BoardList, { BoardType } from "../App/Board/BoardList";
 import BoardScrollView from "../App/Board/BoardScrollView";
 import DetailList from "../App/Board/DetailList";
 import Edit from "../App/Board/EditPost";
 import HotList from "../App/Board/HotList";
 import Post from "../App/Board/Post";
+import PostDetail from "../App/Board/PostDetail";
 import QA_answer from "../App/Board/QA_answer";
 import QAdetail from "../App/Board/QAdetail";
 import TotalList from "../App/Board/TotalList";
@@ -34,8 +34,8 @@ const Routes: RouteType[] = [
     component: QAdetail,
   },
   {
-    name: "BoardDetail",
-    component: BoardDetail,
+    name: "PostDetail",
+    component: PostDetail,
   },
   {
     name: "Post",
@@ -83,7 +83,7 @@ export type NavigationProp = {
   BoardList: undefined;
   BoardScrollView: { boardType: BoardType };
   DetailList: { boardType: BoardType };
-  BoardDetail: { id: number; preRender?: BoardArticle };
+  PostDetail: { id: number; preRender?: BoardArticle };
   QnAdetail: { id: number; preRender?: BoardArticle };
   Post: { boardType: BoardType };
   editPost: { post: BoardArticle };

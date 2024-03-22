@@ -26,7 +26,7 @@ function ScrollList(post: BoardArticle | Board): JSX.Element {
     if (boardType.id == 2) {
       navigation.navigate("QnAdetail", { id: board_id });
     } else {
-      navigation.navigate("BoardDetail", { id: board_id });
+      navigation.navigate("PostDetail", { id: board_id });
     }
   };
 

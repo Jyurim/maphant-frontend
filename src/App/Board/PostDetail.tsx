@@ -53,7 +53,7 @@ import { BoardArticleBase, BoardPost, commentType, ReportType } from "../../type
 import { UserData } from "../../types/User";
 import { dateFormat, dateTimeFormat } from "../../utils/Time";
 
-const BoardDetail = () => {
+const PostDetail = () => {
   const params = useRoute().params as { id: number; preRender?: BoardArticleBase };
   const { id, preRender } = params;
   const navigation = useNavigation<NavigationProps>();
@@ -969,4 +969,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BoardDetail;
+export default PostDetail;

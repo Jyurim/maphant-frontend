@@ -76,7 +76,7 @@ function MyPost(): JSX.Element {
   }
 
   const detailContent = (posts: BoardArticle) => {
-    navigation.navigate("BoardDetail", { id: posts.id });
+    navigation.navigate("PostDetail", { id: posts.id });
   };
 
   return (

@@ -348,7 +348,7 @@ const QAdetail = () => {
                   </View>
                 </View>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate("BoardDetail", { id: answer.boardId })}
+                  onPress={() => navigation.navigate("PostDetail", { id: answer.boardId })}
                 >
                   <View style={styles.answercontext}>
                     <Text style={styles.qatitle}>{answer.title}</Text>

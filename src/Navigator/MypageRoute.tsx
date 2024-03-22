@@ -1,5 +1,5 @@
-import BoardDetail from "../App/Board/BoardDetail";
 import Edit from "../App/Board/EditPost";
+import PostDetail from "../App/Board/PostDetail";
 import Chatroom from "../App/Mail/Chatroom";
 import Bookmark from "../App/Mypage/Bookmark";
 import LikeContent from "../App/Mypage/LikeContent";
@@ -34,8 +34,8 @@ const Routes: RouteType[] = [
     component: Mypost,
   },
   {
-    name: "BoardDetail",
-    component: BoardDetail,
+    name: "PostDetail",
+    component: PostDetail,
   },
   {
     name: "Bookmark",

@@ -21,7 +21,7 @@ const VoteTotalList = () => {
     if (typeId == 2) {
       navigation.navigate("QnAdetail", { id: boardId });
     } else {
-      navigation.navigate("BoardDetail", { id: boardId });
+      navigation.navigate("PostDetail", { id: boardId });
     }
   };
 

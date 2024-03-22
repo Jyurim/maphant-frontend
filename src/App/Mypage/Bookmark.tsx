@@ -98,7 +98,7 @@ function Bookmark(): JSX.Element {
   }
 
   const detailContent = (boards: BoardArticle) => {
-    navigation.navigate("BoardDetail", { id: boards.id });
+    navigation.navigate("PostDetail", { id: boards.id });
   };
 
   return (
