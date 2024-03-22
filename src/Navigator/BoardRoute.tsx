@@ -1,9 +1,9 @@
+import PostWrite from "../App/Board/ PostWrite";
 import BoardList, { BoardType } from "../App/Board/BoardList";
 import BoardScrollView from "../App/Board/BoardScrollView";
 import DetailList from "../App/Board/DetailList";
 import Edit from "../App/Board/EditPost";
 import HotList from "../App/Board/HotList";
-import Post from "../App/Board/Post";
 import PostDetail from "../App/Board/PostDetail";
 import QA_answer from "../App/Board/QA_answer";
 import QAdetail from "../App/Board/QAdetail";
@@ -38,8 +38,8 @@ const Routes: RouteType[] = [
     component: PostDetail,
   },
   {
-    name: "Post",
-    component: Post,
+    name: "PostWrite",
+    component: PostWrite,
   },
   {
     name: "editPost",

@@ -8,11 +8,11 @@ import { Alert, Image, ScrollView, Text, TextInput, TouchableOpacity, View } fro
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 import { boardPost, ImageUpload } from "../../Api/board";
-import { BoardType } from "../../App/Board/BoardList";
 import { Container, Input, Spacer, TextButton } from "../../components/common";
 import { NavigationProps } from "../../Navigator/Routes";
+import { BoardType } from "./BoardList";
 
-const Post: React.FC = () => {
+const PostWrite: React.FC = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [hashtagInput, setHashtagInput] = useState("");
@@ -325,4 +325,4 @@ const Post: React.FC = () => {
   );
 };
 
-export default Post;
+export default PostWrite;

@@ -93,7 +93,7 @@ const DetailList: React.FC = () => {
   }, [sort]);
 
   const createBoard = () => {
-    navigation.navigate("Post", { boardType: boardType });
+    navigation.navigate("PostWrite", { boardType: boardType });
   };
 
   const detailContent = (board: BoardArticle) => {
